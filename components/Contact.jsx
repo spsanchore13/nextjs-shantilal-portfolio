@@ -25,7 +25,7 @@ const Contact = () => {
                   width="33"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g fill="none" fill-rule="evenodd">
+                  <g fill="none" fillRule="evenodd">
                     <path
                       d="m30 60c16.5685433 0 30-13.4314567 30-30s-13.4314567-30-30-30-30 13.4314567-30 30 13.4314567 30 30 30z"
                       fill="#00acee"
@@ -65,7 +65,7 @@ const Contact = () => {
                   width="33"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <g clip-rule="evenodd" fill-rule="evenodd">
+                  <g clipRule="evenodd" fillRule="evenodd">
                     <path
                       d="m120 60.0002c0 33.1366-26.8633 59.9998-60 59.9998-33.138 0-60-26.8632-60-59.9998 0-33.1376 26.8617-60.0002 60-60.0002 33.1364.00031715 60 26.8626 60 60.0002z"
                       fill="#2867b2"

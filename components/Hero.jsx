@@ -7,12 +7,12 @@ const Hero = () => {
   return (
     <div className="hero h-screen ">
       <div className="flex flex-col justify-center align-middle text-center">
-        <p className="p-2 text-3xl sm:text-2xl">Hi, It's Me</p>
+        <p className="p-2 text-3xl sm:text-5xl">Hi, It's Me</p>
 
         <h1 className="heading-title relative z-10 text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% bg-clip-text">
           I'm Shanti lal
         </h1>
-        <p className="p-2 text-2xl sm:text-xl">
+        <p className="p-2 text-2xl sm:text-4xl">
           Full Stack Software Engineer(React/Express)
         </p>
 

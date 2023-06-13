@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
 
   setTimeout(() => {
     setLoading(false);
-  }, 5000);
+  }, 2000);
 
   return (
     <html lang="en" className="scroll-smooth">

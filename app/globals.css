@@ -37,7 +37,7 @@ body {
 } */
 
 .heading-title {
-  @apply text-4xl sm:text-8xl text-xl font-extrabold;
+  @apply text-5xl sm:text-8xl font-extrabold;
 }
 
 .hero {
