@@ -4,13 +4,13 @@ import React from "react";
 
 const Skill = () => {
   return (
-    <div id="skills" className="w-full h-[80vh]">
+    <div id="skills" className="w-full p-10 h-[80vh]">
       <h1 className="text-3xl text-center">
-        My <span className="text-teal-400">Skills</span>
+        Tech <span className="text-teal-400">Stacks</span>
       </h1>
-      <div className="flex gap-3">
+      <div className="w-full flex justify-center items-center gap-10 mt-10 flex-wrap">
         {skills.map((el, i) => (
-          <div key={i} className="flex flex-col justify-center align-middle">
+          <div key={i} className="flex flex-col justify-center items-center">
             <Image
               className="object-contain"
               src={el.icon}

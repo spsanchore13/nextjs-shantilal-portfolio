@@ -1,11 +1,20 @@
 import html from "../public/html.png";
 import css from "../public/css.png";
-import javascript from "../public/js.svg";
+import javascript from "../public/javascript.png";
+import nodejs from "../public/nodejs.png";
 import react from "../public/react.png";
-import redux from "../public/redux.png";
+import reactNative from "../public/react-native.png";
 import mongoose from "../public/mongoose.png";
-import express from "../public/expressjs.svg";
-import chakra from "../public/chakralogo.png";
+import express from "../public/express.png";
+import mongodb from "../public/mongodb.png";
+import chakra from "../public/chakra-ui.png";
+import tailwind from "../public/tailwind.png";
+import github from "../public/github.png";
+import figma from "../public/figma.png";
+import vscode from "../public/vscode.png";
+import jest from "../public/jest.png";
+import cypress from "../public/cypress.webp";
+import dsa from "../public/dsa.png";
 
 const skills = [
   {
@@ -20,9 +29,63 @@ const skills = [
     title: "JavaScript",
     icon: javascript,
   },
+
   {
-    title: "React",
+    title: "React Js",
     icon: react,
+  },
+  {
+    title: "React Native",
+    icon: reactNative,
+  },
+  {
+    title: "Node Js",
+    icon: nodejs,
+  },
+  {
+    title: "Mongoose",
+    icon: mongoose,
+  },
+  {
+    title: "Express Js",
+    icon: express,
+  },
+  {
+    title: "MongoDB",
+    icon: mongodb,
+  },
+  {
+    title: "Tailwind CSS",
+    icon: tailwind,
+  },
+  {
+    title: "Chakra-UI",
+    icon: chakra,
+  },
+
+  {
+    title: "Jest Testing",
+    icon: jest,
+  },
+  {
+    title: "Cypress Testing",
+    icon: cypress,
+  },
+  {
+    title: "Github",
+    icon: github,
+  },
+  {
+    title: "Figma",
+    icon: figma,
+  },
+  {
+    title: "VS Code",
+    icon: vscode,
+  },
+  {
+    title: "DSA",
+    icon: dsa,
   },
 ];
 

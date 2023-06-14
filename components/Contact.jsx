@@ -4,7 +4,7 @@ import "./Buttons.css";
 
 const Contact = () => {
   return (
-    <div id="contact" className="w-full h-[80vh]">
+    <div id="contact" className="w-full p-10">
       <div className="w-full mb-10">
         <h1 className="text-3xl text-center">
           Leave <span className="text-teal-400">Message</span>

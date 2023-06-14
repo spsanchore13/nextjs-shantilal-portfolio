@@ -1,14 +1,13 @@
-import Link from "next/link";
-import React from "react";
-import CustomButton from "./CustomButton";
-// import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+"use client";
+
 import "./Buttons.css";
 
-const Navbar = () => {
-  // const router = useRouter();
+import { usePathname } from "next/navigation";
 
-  // console.log(router.pathname);
+const Navbar = () => {
+  const router = usePathname();
+
+  console.log(router);
 
   const links = [
     {
@@ -38,9 +37,9 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full flex justify-between items-center fixed top-0 z-10 bg-white py-2 px-16 border-b border-gray-400">
+    <div className="w-full flex justify-between items-center fixed top-0 z-10 bg-white py-2 px-16  border-b border-gray-400">
       <div>
-        <h1 className="text-gray-400">Shantilal</h1>
+        <h1 className="text-gray-400">Shanti lal</h1>
       </div>
       <div className="flex justify-center gap-8">
         {links.map((link, index) => (

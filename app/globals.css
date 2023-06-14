@@ -36,12 +36,10 @@ body {
     rgb(var(--background-start-rgb));
 } */
 
-.heading-title {
-  @apply text-5xl sm:text-8xl font-extrabold;
-}
+
 
 .hero {
-  @apply flex xl:flex-row md:flex-col flex-col justify-around items-center    relative z-0 max-w-[1440px] mx-auto;
+  @apply flex xl:flex-row  justify-around items-center    relative z-0 max-w-[1440px] mx-auto;
 }
 
 a:hover {
