@@ -4,19 +4,19 @@ import "./Buttons.css";
 
 const Contact = () => {
   return (
-    <div id="contact" className="w-full p-10">
+    <div id="contact" className="w-full p-5">
       <div className="w-full mb-10">
         <h1 className="text-3xl text-center">
           Leave <span className="text-teal-400">Message</span>
         </h1>
       </div>
 
-      <div className=" flex justify-around">
-        <div className="text-center flex flex-col gap-3 p-4">
+      <div className="flex flex-col md:flex-col lg:flex-row xl:flex-row justify-around">
+        <div className="text-center flex flex-col justify-center items-center gap-3 p-4">
           <h1 className="text-4xl">Shanti lal</h1>
           <p className="text-2xl">shantilalpatliya18@gmail.com</p>
           <p className="text-xl">+91 9784102014</p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap  gap-2">
             <button className="twitter-button">
               <span className="icon">
                 <svg
@@ -83,8 +83,8 @@ const Contact = () => {
             </button>
           </div>
         </div>
-        <div className="w-1/3">
-          <form className="flex flex-col gap-4">
+        <div className="p-5 md:p-20 lg:w-[50%]">
+          <form className="flex flex-col gap-4 mx-auto">
             <input
               type="text"
               className="border border-gray-200 rounded-md focus:ring-blue-500 focus:border-blue-500"

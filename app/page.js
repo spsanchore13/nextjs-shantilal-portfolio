@@ -1,5 +1,13 @@
-import { About, Contact, Footer, Hero, Project, Skill } from "@/components";
-import GithubStats from "@/components/GithubStats";
+import {
+  About,
+  Contact,
+  Footer,
+  Hero,
+  Project,
+  Skill,
+  GithubStats,
+} from "@/components";
+
 export default function Home() {
   return (
     <main className="w-full">

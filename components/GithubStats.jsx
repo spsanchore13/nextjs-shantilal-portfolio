@@ -1,7 +1,7 @@
 "use client";
 
 import GitHubCalendar from "react-github-calendar";
-import { Tooltip as ReactTooltip } from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 import Image from "next/image";
 
 const GithubStats = () => {
@@ -23,7 +23,7 @@ const GithubStats = () => {
   };
 
   return (
-    <div id="github" className="w-full">
+    <div id="github" className="w-full p-5 md:p-10">
       <h1 className="text-3xl text-center mb-10">
         Github <span className="text-teal-400">Stats</span>
       </h1>
@@ -31,13 +31,15 @@ const GithubStats = () => {
       <div className="w-full flex justify-center items-center">
         <GitHubCalendar
           //   transformData={selectLastHalfYear}
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content="Hello world!"
           username="spsanchore13"
         >
-          <ReactTooltip delayShow={10} />
+          <Tooltip id="my-tooltip" delayShow={10} />
         </GitHubCalendar>
       </div>
 
-      <div className="w-full flex md:flex-row sm:flex-col justify-center items-center gap-3 mt-3">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-3 mt-3">
         <img
           src="https://github-readme-streak-stats.herokuapp.com?user=spsanchore13"
           alt="github streak"

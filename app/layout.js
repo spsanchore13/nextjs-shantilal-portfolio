@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+
 import { useState, useEffect } from "react";
 import Loader from "@/components/Loader";
 
@@ -22,7 +23,7 @@ export default function RootLayout({ children }) {
   }, 1000);
 
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body>
         {loading ? (
           <div className="w-full h-[100vh] flex flex-col justify-center items-center">

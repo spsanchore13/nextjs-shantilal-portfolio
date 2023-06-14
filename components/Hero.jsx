@@ -5,14 +5,14 @@ import Loader from "./Loader";
 
 const Hero = () => {
   return (
-    <div className="hero h-screen p-10 ">
+    <div className="flex flex-col  md:flex-col xl:flex-row justify-evenly items-center h-screen p-10">
       <div className="flex flex-col justify-center gap-3 align-middle text-center">
         <p className="p-2 text-3xl">Hi, It's Me</p>
 
-        <h1 className="text-7xl font-extrabold relative z-10 text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% bg-clip-text">
+        <h1 className="text-6xl md:text-7xl font-extrabold relative z-10 text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% bg-clip-text">
           I'm Shanti lal
         </h1>
-        <p className="p-2 text-3xl ">
+        <p className="p-2 text-2xl md:text-4xl">
           Full Stack Software Engineer(React/Express)
         </p>
 

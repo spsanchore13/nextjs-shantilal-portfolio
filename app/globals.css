@@ -37,11 +37,6 @@ body {
 } */
 
 
-
-.hero {
-  @apply flex xl:flex-row  justify-around items-center    relative z-0 max-w-[1440px] mx-auto;
-}
-
 a:hover {
   color: red;
 }
