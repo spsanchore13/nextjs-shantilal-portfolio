@@ -72,7 +72,7 @@ const Navbar = () => {
       <div
         className={`w-full absolute  p-2 flex flex-col bg-white border-b border-gray-300  left-0 z-[-1] justify-end items-end pr-16 gap-4 md:hidden lg:hidden xl:hidden
         transition-all duration-500 ease-in ${
-          toggle ? "left-0 top-16" : "left-[-500px] top-16"
+          toggle ? "left-0 top-16" : "left-[-800px] top-16"
         }
         `}
       >
