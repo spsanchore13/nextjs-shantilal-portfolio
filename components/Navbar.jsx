@@ -13,11 +13,11 @@ const Navbar = () => {
 
   const [active, setActive] = useState("");
 
-  console.log(active);
+  // console.log(active);
 
   const router = usePathname();
 
-  console.log(router);
+  // console.log(router);
 
   const links = [
     {
