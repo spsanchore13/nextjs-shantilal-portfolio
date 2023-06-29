@@ -1,7 +1,8 @@
 "use client";
 
 import GitHubCalendar from "react-github-calendar";
-import { Tooltip } from "react-tooltip";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+
 import Image from "next/image";
 
 const GithubStats = () => {
@@ -31,11 +32,16 @@ const GithubStats = () => {
       <div className="w-full flex justify-center items-center">
         <GitHubCalendar
           //   transformData={selectLastHalfYear}
-          data-tooltip-id="my-tooltip"
-          data-tooltip-content="Hello world!"
+          data-tooltip-id="calender"
           username="spsanchore13"
         >
-          <Tooltip id="my-tooltip" delayShow={10} />
+          <ReactTooltip
+            delayShow={10}
+            id="calender"
+            place="bottom"
+            variant="info"
+            content="hello"
+          />
         </GitHubCalendar>
       </div>
 
