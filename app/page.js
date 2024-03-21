@@ -1,21 +1,23 @@
-import {
-  About,
-  Contact,
-  Footer,
-  Hero,
-  Project,
-  Skill,
-  GithubStats,
-} from "@/components";
+import GithubStats from "@/components/GithubStats";
+import GithubSummery from "@/components/GithubSummery";
+import About from "@/components/about/About";
+import Contact from "@/components/contact/Contact";
+import Footer from "@/components/footer/Footer";
+import Hero from "@/components/hero/Hero";
+import Navbar from "@/components/navbar/Navbar";
+import Projects from "@/components/projects/Projects";
+import Skills from "@/components/skills/Skills";
 
 export default function Home() {
   return (
     <main className="w-full">
+      <Navbar />
       <Hero />
       <About />
       <GithubStats />
-      <Skill />
-      <Project />
+      <GithubSummery />
+      <Projects />
+      <Skills />
       <Contact />
       <Footer />
     </main>
