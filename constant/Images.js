@@ -1,6 +1,10 @@
 import html from "../public/html.png";
 import css from "../public/css.png";
 import javascript from "../public/javascript.png";
+import typescript from "../public/typescript.png";
+import redux from "../public/redux.png";
+import chatgpt from "../public/chatgpt.jpg";
+import socket from "../public/socket.png";
 import nodejs from "../public/nodejs.png";
 import react from "../public/react.png";
 import reactNative from "../public/react-native.png";
@@ -31,8 +35,17 @@ const skills = [
   },
 
   {
+    title: "TypeScript",
+    icon: typescript,
+  },
+
+  {
     title: "React Js",
     icon: react,
+  },
+  {
+    title: "Redux",
+    icon: redux,
   },
   {
     title: "React Native",
@@ -70,6 +83,14 @@ const skills = [
   {
     title: "Cypress Testing",
     icon: cypress,
+  },
+  {
+    title: "ChatGPT",
+    icon: chatgpt,
+  },
+  {
+    title: "Socket.IO",
+    icon: socket,
   },
   {
     title: "Github",

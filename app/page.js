@@ -18,7 +18,7 @@ export default function Home() {
       <GithubSummery />
       <Projects />
       <Skills />
-      <Contact />
+      {/* <Contact /> */}
       <Footer />
     </main>
   );

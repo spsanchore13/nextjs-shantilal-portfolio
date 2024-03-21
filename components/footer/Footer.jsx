@@ -5,7 +5,7 @@ const Footer = () => {
   const date = new Date();
 
   return (
-    <div className="w-full">
+    <div className="w-full mt-10">
       <Separator />
 
       <div className="w-full flex justify-center items-center p-2 font-semibold">

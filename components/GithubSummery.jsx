@@ -12,7 +12,7 @@ const GithubSummery = () => {
         height="100%"
         width="100%"
         src="https://profile-summary-for-github.com/user/spsanchore13"
-        frameborder="0"
+        frameBorder="0"
         scrolling="no"
       ></iframe>
     </div>

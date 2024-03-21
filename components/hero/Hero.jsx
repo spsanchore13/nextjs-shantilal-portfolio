@@ -31,7 +31,7 @@ const Hero = () => {
     {
       title: "Resume",
       icon: <FileDown size="24px" className="hover:text-gray-400" />,
-      url: "https://drive.google.com/file/d/14Emkc91uy1Xc3bNkX57tLNhaeQmJdS7R/view?usp=share_link",
+      url: "/Shantilal_Resume.pdf",
     },
   ];
 
@@ -76,7 +76,7 @@ const Hero = () => {
           src="https://i.imgur.com/oxFfytk.png"
           width={300}
           height={300}
-          className="object-contain rounded-full border border-gray-100"
+          className="object-contain rounded-full border  border-gray-100"
           alt="image"
         />
       </div>

@@ -1,5 +1,3 @@
-import React from "react";
-
 const NavbarMenu = ({ cls }) => {
   const links = [
     {
@@ -38,7 +36,7 @@ const NavbarMenu = ({ cls }) => {
       {links.map((link, index) => {
         return (
           <a
-            className="font-semibold dark:font-thin text-teal-500 hover:text-teal-300 dark:text-white dark:hover:text-zinc-300 text-md"
+            className="font-semibold dark:font-thin text-teal-500 hover:text-teal-300  dark:hover:text-zinc-300 text-[18px]"
             href={link.url}
             key={index}
           >

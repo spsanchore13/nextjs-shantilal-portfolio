@@ -11,7 +11,7 @@ const Skills = () => {
         {skills.map((el, i) => (
           <div key={i} className="flex flex-col justify-center items-center">
             <Image
-              className="object-contain"
+              className="object-contain rounded-full"
               src={el.icon}
               width={60}
               height={60}
