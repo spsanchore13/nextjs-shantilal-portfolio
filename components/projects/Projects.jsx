@@ -156,7 +156,7 @@ const Projects = () => {
         My <span className="text-teal-400">Projects</span>
       </h1>
 
-      <div className="flex justify-between flex-wrap mt-10">
+      <div className="flex justify-between flex-wrap mt-10 gap-10">
         {projectsData.map((project, i) => (
           <ProjectCard {...project} key={project.id} />
         ))}

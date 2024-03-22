@@ -39,7 +39,7 @@ const ProjectCard = ({
   live,
 }) => {
   return (
-    <Card className="w-[400px] flex flex-col">
+    <Card className="w-[400px] md:w-[350px] lg-[350px]  flex flex-col">
       <CardHeader>
         <CardDescription>
           <HoverCard>
