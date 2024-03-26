@@ -13,10 +13,6 @@ const NavbarMenu = ({ cls }) => {
       url: "#github",
     },
     {
-      name: "Github Summery",
-      url: "#github-summery",
-    },
-    {
       name: "Projects",
       url: "#projects",
     },

@@ -1,5 +1,4 @@
 import GithubStats from "@/components/GithubStats";
-import GithubSummery from "@/components/GithubSummery";
 import About from "@/components/about/About";
 import Contact from "@/components/contact/Contact";
 import Footer from "@/components/footer/Footer";
@@ -15,10 +14,9 @@ export default function Home() {
       <Hero />
       <About />
       <GithubStats />
-      <GithubSummery />
       <Projects />
       <Skills />
-      {/* <Contact /> */}
+      <Contact />
       <Footer />
     </main>
   );

@@ -8,6 +8,7 @@ const nextConfig = {
       "twitter.com",
       "camo.githubusercontent.com",
       "i.imgur.com",
+      "user-images.githubusercontent.com",
     ],
   },
 };

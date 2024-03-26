@@ -1,6 +1,7 @@
+"use client";
+
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import React from "react";
-import ContactForm from "./ContactForm";
 
 const Contact = () => {
   return (
@@ -9,31 +10,37 @@ const Contact = () => {
         Let's <span className="text-teal-400">Connect</span>
       </h1>
 
-      <div className="flex justify-between p-10">
-        <div>
-          <div>
-            <h1>Shantilal Patliya</h1>
-            <p>shantilalpatliya18@gmail.com</p>
-            <p>+91 9784102014</p>
+      <div className="flex flex-col gap-y-5 justify-center items-center p-10">
+        <h1 className="text-5xl">Shantilal Patliya</h1>
+        <p className="text-3xl">shantilalpatliya18@gmail.com</p>
+        <p className="text-2xl">+91 9784102014</p>
 
-            <div className="flex gap-4">
-              <button>
-                <Linkedin />
-              </button>
-              <button>
-                <Github />
-              </button>
-              <button>
-                <Mail />
-              </button>
-              <button>
-                <Twitter />
-              </button>
-            </div>
-          </div>
+        <div className="flex gap-4">
+          <button
+            onClick={() =>
+              window.open("https://www.linkedin.com/in/spsanchore13/")
+            }
+          >
+            <Linkedin />
+          </button>
+          <button
+            onClick={() => window.open("https://github.com/spsanchore13")}
+          >
+            <Github />
+          </button>
+          {/* <button
+            onClick={() =>
+              (window.location.href = "mailto:shantilalpatliya18@gmail.com")
+            }
+          >
+            <Mail />
+          </button> */}
+          <button
+            onClick={() => window.open("https://twitter.com/spsanchore13")}
+          >
+            <Twitter />
+          </button>
         </div>
-
-        <ContactForm />
       </div>
     </div>
   );
