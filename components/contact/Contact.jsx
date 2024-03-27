@@ -28,13 +28,15 @@ const Contact = () => {
           >
             <Github />
           </button>
-          {/* <button
+          <button
             onClick={() =>
-              (window.location.href = "mailto:shantilalpatliya18@gmail.com")
+              window.open(
+                "https://mail.google.com/mail/u/0/?to=shantilalpatliya18@gmail.com&compose=new#inbox?compose=GTvVlcRwQZlfqfnQwmnrDGcjsdKcFSQcXjBbKLwNfQNvmpFpblWKCVKfGxVNbRhdZjdCxjBSfFtFB"
+              )
             }
           >
             <Mail />
-          </button> */}
+          </button>
           <button
             onClick={() => window.open("https://twitter.com/spsanchore13")}
           >

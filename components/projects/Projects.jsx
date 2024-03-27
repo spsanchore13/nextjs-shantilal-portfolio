@@ -6,7 +6,7 @@ const projectsData = [
     id: 1,
     title: "Full Stack Discord Clone",
     description:
-      "A Discord clone is an app similar to Discord where you can create servers and channels for text audio and video communication. You can edit or delete servers and channels and manage members within channels. It also supports both one-on-one and group chats using socket.io technology. Additionally it includes video and audio calling features using the open-source Livkit SDK.",
+      "An app like Discord for creating servers, channels, text/audio/video communication, managing members, and supporting one-on-one/group chats with Livkit SDK.",
     images: [
       {
         url: "https://camo.githubusercontent.com/c6193fa3c4587ebfb70a30ed42ff8e23f42ed544cbce8bc8078cde07dd1f1d2b/68747470733a2f2f692e696d6775722e636f6d2f49324f487233512e706e67",
@@ -43,7 +43,7 @@ const projectsData = [
     id: 2,
     title: "Full Stack AI Saas App",
     description:
-      "AI SaaS is a clever app powered by OpenAI. It can chat with you, generate code, make images, music, and videos. You can sign up for it and pay through Stripe. Plus, it offers chat support using Crisp.",
+      "AI SaaS: OpenAI-powered app for chat, code generation, image/audio/video creation. Sign up, pay via Stripe, with chat support from Crisp.",
     images: [
       {
         url: "https://camo.githubusercontent.com/57859c50128d5604a9b883213c31db3bce117997375c602f780ff8819d59d586/68747470733a2f2f692e696d6775722e636f6d2f49687050396a332e706e67",
@@ -83,7 +83,7 @@ const projectsData = [
     id: 3,
     title: "Next.js Car Showcase",
     description:
-      "The Car Showcase Next.js App is a web application designed to provide a visually appealing and interactive platform for showcasing various car models. It leverages the power of Next.js, a popular React framework, to create a seamless and efficient user experience.",
+      "Car Showcase Next.js App: A visually appealing platform showcasing car models, built with Next.js for seamless user experience.",
     images: [
       {
         url: "https://camo.githubusercontent.com/b97424a72b3b4109bbaed43615f69797498bb28ad7200335f58a22570a9f20a4/68747470733a2f2f692e696d6775722e636f6d2f7478665a5666312e706e67",
@@ -115,7 +115,7 @@ const projectsData = [
     id: 4,
     title: "Full Stack Bettermart Ecommerce",
     description:
-      "Bettermart is an ecommerce platform from where a user can by daily life used things and accessories like dresses shoes and many more things.",
+      "Bettermart: E-commerce platform for daily life essentials like clothes, shoes, etc. Razorpay integrated for seamless payment transactions.",
     images: [
       {
         url: "https://camo.githubusercontent.com/8d18ebe0b8d5746e1b1335c0e0f2300e8f203528bd55d6834669879bd91bac12/68747470733a2f2f7265732e636c6f7564696e6172792e636f6d2f6469646177747a62662f696d6167652f75706c6f61642f76313636383335393832312f315f6f69793665692e706e67",

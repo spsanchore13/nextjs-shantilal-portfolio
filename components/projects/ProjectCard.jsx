@@ -21,14 +21,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import Image from "next/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 
 const ProjectCard = ({
   title,
@@ -39,19 +31,14 @@ const ProjectCard = ({
   live,
 }) => {
   return (
-    <Card className="w-[400px] md:w-[350px] lg-[350px]  flex flex-col">
+    <Card className="w-[400px] md:w-[350px] lg-[350px]  flex flex-col justify-between">
       <CardHeader>
         <CardDescription>
-          <HoverCard>
-            <HoverCardTrigger>
-              <CardTitle className="text-black dark:text-white cursor-pointer">
-                {title}
-              </CardTitle>
-            </HoverCardTrigger>
-            <HoverCardContent className="w-[380px]">
-              {description}
-            </HoverCardContent>
-          </HoverCard>
+          <CardTitle className="text-black dark:text-white cursor-pointer">
+            {title}
+          </CardTitle>
+
+          <CardDescription className="mt-2">{description}</CardDescription>
         </CardDescription>
       </CardHeader>
       <CardContent>
