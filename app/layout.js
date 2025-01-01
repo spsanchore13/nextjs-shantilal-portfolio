@@ -1,15 +1,15 @@
-import { Ubuntu } from "next/font/google";
+import { DM_Sans, Ubuntu } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const font = Ubuntu({
+const font = DM_Sans({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
 });
 
 export const metadata = {
-  title: "Shantilal",
+  title: "Shantilal Patliya",
   description: "Full Stack Developer",
 };
 

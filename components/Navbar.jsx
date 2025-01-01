@@ -1,31 +1,73 @@
 "use client";
 
 import Image from "next/image";
-import NavbarMenu from "./NavbarMenu";
-import MobileToggle from "../MobileToggle";
-import { ModeToggle } from "../ModeToggle";
-import { Button } from "../ui/button";
+import MobileToggle from "./MobileToggle";
+import { ModeToggle } from "./ModeToggle";
+import { Button } from "./ui/button";
 import { FileDown } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
+} from "./ui/tooltip";
 import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const { theme } = useTheme();
+  const links = [
+    {
+      name: "Home",
+      url: "#",
+    },
+    {
+      name: "About",
+      url: "#about",
+    },
+    {
+      name: "Github",
+      url: "#github",
+    },
+    {
+      name: "Experience",
+      url: "#experience",
+    },
+    {
+      name: "Projects",
+      url: "#projects",
+    },
+    {
+      name: "Skills",
+      url: "#skills",
+    },
+
+    {
+      name: "Contact",
+      url: "#contact",
+    },
+  ];
 
   return (
-    <div className="w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 md:px-8 z-30">
+    <div className="w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 px-10 z-30">
       <MobileToggle />
 
-      <div>
+      <div className="hidden lg:flex">
         <Image src="/logo.png" width={150} height={10} alt="logo" />
       </div>
 
-      <NavbarMenu cls="hidden" />
+      <div className={`hidden lg:flex gap-5`}>
+        {links.map((link, index) => {
+          return (
+            <a
+              className="font-medium text-teal-500 hover:text-teal-300  dark:hover:text-zinc-300 text-[18px]"
+              href={link.url}
+              key={index}
+            >
+              {link.name}
+            </a>
+          );
+        })}
+      </div>
 
       <div className="flex gap-3">
         <TooltipProvider>

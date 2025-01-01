@@ -1,23 +1,29 @@
+import Education from "@/components/Education";
+import Experience from "@/components/Experience";
 import GithubStats from "@/components/GithubStats";
-import About from "@/components/about/About";
-import Contact from "@/components/contact/Contact";
-import Footer from "@/components/footer/Footer";
-import Hero from "@/components/hero/Hero";
-import Navbar from "@/components/navbar/Navbar";
-import Projects from "@/components/projects/Projects";
-import Skills from "@/components/skills/Skills";
+import Projects from "@/components/Projects";
+import Summary from "@/components/Summary";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import Navbar from "@/components/Navbar";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <>
       <Navbar />
-      <Hero />
-      <About />
-      <GithubStats />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
-    </main>
+      <main className="w-full px-10 flex flex-col gap-y-24">
+        <Hero />
+        <Summary />
+        <Education />
+        <Experience />
+        <Projects />
+        <Skills />
+        <GithubStats />
+        <Contact />
+        <Footer />
+      </main>
+    </>
   );
 }

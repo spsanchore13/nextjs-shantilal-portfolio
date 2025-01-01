@@ -2,9 +2,8 @@
 
 import GitHubCalendar from "react-github-calendar";
 import { Tooltip as ReactTooltip } from "react-tooltip";
-
 import Image from "next/image";
-import GithubSummery from "./GithubSummery";
+import { motion } from "framer-motion";
 
 const GithubStats = () => {
   const selectLastHalfYear = (contributions) => {
@@ -26,10 +25,15 @@ const GithubStats = () => {
 
   return (
     <>
-      <div id="github" className="w-full p-5 md:p-10">
-        <h1 className="text-3xl text-center mb-10">
-          Github <span className="text-teal-400">Stats</span>
-        </h1>
+      <div id="github" className="w-full">
+        <motion.h2
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center"
+        >
+          Github Portfolio
+        </motion.h2>
 
         <div className="w-full flex justify-center items-center">
           <GitHubCalendar
@@ -47,7 +51,7 @@ const GithubStats = () => {
           </GitHubCalendar>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-3 mt-3">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-3 mt-6">
           <img
             src="https://github-readme-streak-stats.herokuapp.com?user=spsanchore13"
             alt="github streak"
@@ -59,7 +63,16 @@ const GithubStats = () => {
           />
         </div>
       </div>
-      <GithubSummery />
+      <div id="github-summery" className="w-full h-[1100px]">
+        <iframe
+          className="rounded-md"
+          height="100%"
+          width="100%"
+          src="https://profile-summary-for-github.com/user/spsanchore13"
+          frameBorder="0"
+          scrolling="no"
+        ></iframe>
+      </div>
     </>
   );
 };

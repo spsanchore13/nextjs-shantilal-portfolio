@@ -1,12 +1,20 @@
+"use client";
+
 import skills from "@/constant/Images";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Skills = () => {
   return (
-    <div id="skills" className="w-full p-10">
-      <h1 className="text-3xl text-center">
-        Tech <span className="text-teal-400">Stacks</span>
-      </h1>
+    <div id="skills" className="w-full">
+      <motion.h2
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center"
+      >
+        Technical Skills
+      </motion.h2>
       <div className="w-full flex justify-center items-center gap-10 mt-10 flex-wrap">
         {skills.map((el, i) => (
           <div key={i} className="flex flex-col justify-center items-center">
