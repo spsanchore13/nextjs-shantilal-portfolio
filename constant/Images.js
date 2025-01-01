@@ -44,6 +44,10 @@ const skills = [
     icon: react,
   },
   {
+    title: "Next.js",
+    icon: "/nextjs.svg",
+  },
+  {
     title: "Redux",
     icon: redux,
   },
@@ -68,8 +72,20 @@ const skills = [
     icon: mongodb,
   },
   {
+    title: "AWS",
+    icon: "/aws.png",
+  },
+  {
     title: "Tailwind CSS",
     icon: tailwind,
+  },
+  {
+    title: "shadcn/ui",
+    icon: "/shadcn-ui.png",
+  },
+  {
+    title: "Material-UI",
+    icon: "/MaterialUi.jpg",
   },
   {
     title: "Chakra-UI",
@@ -91,6 +107,35 @@ const skills = [
   {
     title: "Socket.IO",
     icon: socket,
+  },
+
+  {
+    title: "CapacitorJs",
+    icon: "/capacitorjs.svg",
+  },
+  {
+    title: "Android Studio",
+    icon: "/android.png",
+  },
+  {
+    title: "Google Play Console",
+    icon: "/play-console-blue.png",
+  },
+  {
+    title: "Xcode(ios)",
+    icon: "/Xcode.png",
+  },
+  {
+    title: "App Store Conncet",
+    icon: "/app-store.png",
+  },
+  {
+    title: "Bitbucket",
+    icon: "/bitbucket.webp",
+  },
+  {
+    title: "Jira",
+    icon: "/jira.png",
   },
   {
     title: "Github",

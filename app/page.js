@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="w-full px-10 flex flex-col gap-y-24">
+      <main className="w-full px-4 lg:px-10 flex flex-col gap-y-24">
         <Hero />
         <Summary />
         <Education />
@@ -22,8 +22,8 @@ export default function Home() {
         <Skills />
         <GithubStats />
         <Contact />
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }

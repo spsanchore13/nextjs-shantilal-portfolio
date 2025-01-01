@@ -46,14 +46,14 @@ const Summary = () => {
                 in MERN stack technologies. Skilled in building dynamic,
                 user-centric web applications using React, Node.js, and MongoDB.
                 Proven ability to lead projects, improve user engagement, and
-                deliver scalable solutions on time.
+                deliver scalable solutions on time. Strong focus on
+                problem-solving, UI design, and backend development.
               </p>
               <p className="text-gray-600 mb-4">
-                I have a strong focus on problem-solving, UI design, and backend
-                development. My experience includes working on investment
-                platforms, competitive programming platforms, and freelance
-                projects, where I've consistently delivered high-quality
-                solutions that meet client needs and improve user experiences.
+                My experience includes working on investment platforms,
+                competitive programming platforms, and freelance projects, where
+                I've consistently delivered high-quality solutions that meet
+                client needs and improve user experiences.
               </p>
               <p className="text-gray-600">
                 I'm passionate about staying up-to-date with the latest

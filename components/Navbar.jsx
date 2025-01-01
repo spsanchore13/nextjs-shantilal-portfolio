@@ -48,7 +48,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 px-10 z-30">
+    <div className="w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 px-2 lg:px-10 z-30">
       <MobileToggle />
 
       <div className="hidden lg:flex">
@@ -73,10 +73,10 @@ const Navbar = () => {
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <a target="_blank" href="/Shantilal_Resume.pdf" download>
+              <a target="_blank" href="/Shantilal_Frontend_Resume.pdf" download>
                 <Button
                   variant="icon"
-                  onClick={() => window.open("/Shantilal_Resume.pdf")}
+                  onClick={() => window.open("/Shantilal_Frontend_Resume.pdf")}
                 >
                   <FileDown />
                 </Button>

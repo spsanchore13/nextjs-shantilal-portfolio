@@ -18,9 +18,9 @@ const Contact = () => {
       </motion.h2>
 
       <div className="flex flex-col gap-y-5 justify-center items-center">
-        <h1 className="text-5xl">Shantilal Patliya</h1>
-        <p className="text-3xl">developer.shantilal@gmail.com</p>
-        <p className="text-2xl">+91 9784102014</p>
+        <h1 className="text-3xl lg:text-5xl">Shantilal Patliya</h1>
+        <p className="text-2xl lg:text-3xl">developer.shantilal@gmail.com</p>
+        <p className="text-xl lg:text-2xl">+91 9784102014</p>
 
         <div className="flex gap-4">
           <button
