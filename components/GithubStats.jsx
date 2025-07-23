@@ -25,7 +25,7 @@ const GithubStats = () => {
 
   return (
     <>
-      <div id="github" className="w-full">
+      <section id="github" className="w-full h-screen">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -62,8 +62,8 @@ const GithubStats = () => {
             alt="github stats"
           />
         </div>
-      </div>
-      <div id="github-summery" className="w-full h-[1100px]">
+      </section>
+      {/* <div id="github-summery" className="h-screen">
         <iframe
           className="rounded-md"
           height="100%"
@@ -72,7 +72,7 @@ const GithubStats = () => {
           frameBorder="0"
           scrolling="no"
         ></iframe>
-      </div>
+      </div> */}
     </>
   );
 };

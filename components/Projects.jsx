@@ -1,9 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
+import {
+  GraduationCap,
+  MapPin,
+  Calendar,
+  Briefcase,
+  ExternalLink,
+} from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import gsap from "gsap";
+import { useRef, useEffect } from "react";
 
 const projects = [
   {
@@ -66,67 +83,122 @@ const projects = [
   },
 ];
 
+const dummyImages = ["/nextjs.png", "/react.png", "/vercel.svg"];
+
 const Projects = () => {
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    gsap.fromTo(
+      cardRefs.current,
+      { y: 60, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.15,
+        ease: "power3.out",
+      }
+    );
+  }, []);
+
   return (
-    <section id="projects" className="section">
-      <motion.h2
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center"
-      >
-        Project Portfolio
-      </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="rounded-lg shadow-md p-4 md:p-6 flex flex-col justify-between items-center border"
-          >
-            {/* <Image
-              src={project.logo}
-              alt={`${project.title} logo`}
-              width={80}
-              height={80}
-              className="mb-4"
-            /> */}
-            <h3 className="text-lg md:text-xl font-semibold mb-2 text-center">
-              {project.title}
-            </h3>
-            <p className="text-gray-600 mb-4 text-center text-sm md:text-base">
-              {project.description}
-            </p>
-            <div className="text-gray-500 mb-4 text-center text-sm md:text-base">
-              <span className="text-gray-600 font-semibold">Technologies:</span>{" "}
-              {project.technologies}
+    <div
+      className="w-full min-h-screen max-w-7xl mx-auto p-6 space-y-16"
+      id="projects"
+    >
+      {/* Projects Section */}
+      <section>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-foreground mb-2">
+            Project Portfolio
+          </h2>
+          <p className="text-muted-foreground">
+            Showcasing my development projects and achievements
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {projects.map((project, index) => (
+            <div
+              key={project.title + index}
+              ref={(el) => (cardRefs.current[index] = el)}
+              className="group bg-white/60 dark:bg-zinc-900/60 backdrop-blur-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-zinc-200 dark:border-zinc-700 flex flex-col overflow-hidden"
+              style={{ minHeight: 420 }}
+            >
+              {/* Carousel */}
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {[project.logo, ...dummyImages].map((img, imgIdx) => (
+                    <CarouselItem
+                      key={imgIdx}
+                      className="flex items-center justify-center h-56 bg-gradient-to-br from-purple-100/40 to-purple-200/10 dark:from-zinc-800 dark:to-zinc-900"
+                    >
+                      <Image
+                        src={img}
+                        alt={project.title + " image " + imgIdx}
+                        width={180}
+                        height={180}
+                        className="object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+
+              <CardContent className="p-6 h-full flex flex-col">
+                <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground mb-4 text-sm md:text-base leading-relaxed flex-1">
+                  {project.description}
+                </p>
+                <div className="mb-4">
+                  <p className="text-xs text-muted-foreground mb-2">
+                    <span className="font-semibold text-foreground">
+                      Technologies:
+                    </span>
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {project.technologies.split(", ").map((tech, techIndex) => (
+                      <Badge
+                        key={tech + techIndex}
+                        variant="secondary"
+                        className="text-xs bg-purple-100 text-purple-800 hover:bg-purple-200"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-4 mt-auto">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-purple-600 hover:text-purple-400 transition-colors font-medium text-sm"
+                  >
+                    Live Demo <ExternalLink className="h-4 w-4" />
+                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
+                    >
+                      GitHub <FaGithub className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </CardContent>
             </div>
-            <div className="flex gap-x-6">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 hover:underline text-sm md:text-base flex items-center gap-x-2"
-              >
-                Live <ExternalLink className="h-5 w-5" />
-              </a>
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-700 hover:underline text-sm md:text-base flex items-center gap-x-2"
-                >
-                  Github <FaGithub className="h-5 w-5" />
-                </a>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 };
 

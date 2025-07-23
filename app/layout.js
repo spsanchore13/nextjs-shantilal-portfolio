@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={cn(font.className, "bg-white dark:bg-[#09090b] scroll-smooth")}
+      className={cn(font.className, "dark:bg-[#09090b] scroll-smooth")}
       suppressHydrationWarning
     >
       <body>
