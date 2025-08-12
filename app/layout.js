@@ -1,4 +1,4 @@
-import { DM_Sans, Ubuntu } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 import { cn } from "@/lib/utils";
@@ -17,10 +17,10 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={cn(font.className, "dark:bg-[#09090b] scroll-smooth")}
+      className={cn(font.className, "scroll-smooth")}
       suppressHydrationWarning
     >
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

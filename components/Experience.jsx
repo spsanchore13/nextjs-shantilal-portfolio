@@ -112,16 +112,14 @@ const Experience = () => {
         <div className="relative w-full">
           {/* Timeline Line */}
           <div
-            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-gradient-to-b from-blue-500 via-purple-400 to-purple-700 rounded-full z-0"
+            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 -translate-x-1/2 bg-gradient-to-b from-primary via-primary/80 to-primary/60 rounded-full z-0"
             style={{ minHeight: "100%" }}
           ></div>
-          <div className="flex flex-col gap-16 w-full z-10">
+          <div className="flex flex-col gap-8 md:gap-16 w-full z-10">
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className={`relative w-full flex md:grid md:grid-cols-3 md:items-center ${
-                  index !== 0 ? "md:-mt-[18%]" : ""
-                }`}
+                className="relative w-full flex flex-col md:grid md:grid-cols-3 md:items-center"
               >
                 {/* Left Card (odd index) */}
                 {index % 2 === 0 ? (
@@ -129,10 +127,10 @@ const Experience = () => {
                     ref={(el) => (cardRefs.current[index] = el)}
                     className="md:col-span-1 md:justify-self-end w-full max-w-xl z-10"
                   >
-                    <Card className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-700 p-0 transition-all duration-300">
+                    <Card className="bg-card/70 backdrop-blur-lg rounded-2xl shadow-xl border border-border p-0 transition-all duration-300">
                       <CardContent className="p-6 h-full flex flex-col">
                         <div className="flex items-start gap-4 mb-4">
-                          <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                          <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
                             {exp.logo ? (
                               <Image
                                 src={exp.logo || "/placeholder.svg"}
@@ -142,7 +140,7 @@ const Experience = () => {
                                 className="object-contain"
                               />
                             ) : (
-                              <Briefcase className="w-6 h-6 text-blue-600" />
+                              <Briefcase className="w-6 h-6 text-primary" />
                             )}
                           </div>
                           <div className="flex-1">
@@ -154,7 +152,7 @@ const Experience = () => {
                                 href={exp.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-600 font-semibold hover:text-blue-400 transition-colors flex items-center gap-1"
+                                className="text-primary font-semibold hover:text-primary/80 transition-colors duration-300 flex items-center gap-1"
                               >
                                 {exp.company}
                                 <ExternalLink className="w-3 h-3" />
@@ -168,7 +166,7 @@ const Experience = () => {
                           {exp.date.includes("Present") && (
                             <Badge
                               variant="secondary"
-                              className="ml-2 bg-green-100 text-green-800"
+                              className="ml-2 transition-colors duration-300"
                             >
                               Current
                             </Badge>
@@ -180,7 +178,7 @@ const Experience = () => {
                               key={descIndex}
                               className="flex items-start gap-2"
                             >
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                               <p className="text-sm text-muted-foreground leading-relaxed">
                                 {desc}
                               </p>
@@ -193,29 +191,31 @@ const Experience = () => {
                 ) : (
                   <div className="md:col-span-1"></div>
                 )}
-                {/* Timeline Dot */}
-                <div className="flex flex-col items-center md:col-span-1 md:justify-self-center z-20">
+
+                {/* Timeline Dot - Only visible on desktop */}
+                <div className="hidden md:flex flex-col items-center md:col-span-1 md:justify-self-center z-20">
                   <div
                     ref={(el) => (dotRefs.current[index] = el)}
-                    className="w-7 h-7 bg-gradient-to-br from-blue-400 via-purple-400 to-purple-700 rounded-full border-4 border-white shadow-lg flex items-center justify-center"
+                    className="w-7 h-7 bg-gradient-to-br from-primary via-primary/80 to-primary/60 rounded-full border-4 border-background shadow-lg flex items-center justify-center"
                   >
-                    <span className="block w-3 h-3 bg-white rounded-full"></span>
+                    <span className="block w-3 h-3 bg-background rounded-full"></span>
                   </div>
                   {/* Timeline line segment below dot (except last) */}
                   {index !== experiences.length - 1 && (
-                    <div className="hidden md:block w-1 h-16 bg-gradient-to-b from-blue-400 via-purple-400 to-purple-700"></div>
+                    <div className="hidden md:block w-1 h-16 bg-gradient-to-b from-primary via-primary/80 to-primary/60"></div>
                   )}
                 </div>
+
                 {/* Right Card (even index) */}
                 {index % 2 === 1 ? (
                   <div
                     ref={(el) => (cardRefs.current[index] = el)}
                     className="md:col-span-1 md:justify-self-start w-full max-w-xl z-10"
                   >
-                    <Card className="bg-white/70 dark:bg-zinc-900/70 backdrop-blur-lg rounded-2xl shadow-xl border border-zinc-200 dark:border-zinc-700 p-0 transition-all duration-300">
+                    <Card className="bg-card/70 backdrop-blur-lg rounded-2xl shadow-xl border border-border p-0 transition-all duration-300">
                       <CardContent className="p-6 h-full flex flex-col">
                         <div className="flex items-start gap-4 mb-4">
-                          <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                          <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center flex-shrink-0 overflow-hidden">
                             {exp.logo ? (
                               <Image
                                 src={exp.logo || "/placeholder.svg"}
@@ -225,7 +225,7 @@ const Experience = () => {
                                 className="object-contain"
                               />
                             ) : (
-                              <Briefcase className="w-6 h-6 text-blue-600" />
+                              <Briefcase className="w-6 h-6 text-primary" />
                             )}
                           </div>
                           <div className="flex-1">
@@ -237,7 +237,7 @@ const Experience = () => {
                                 href={exp.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-blue-600 font-semibold hover:text-blue-400 transition-colors flex items-center gap-1"
+                                className="text-primary font-semibold hover:text-primary/80 transition-colors duration-300 flex items-center gap-1"
                               >
                                 {exp.company}
                                 <ExternalLink className="w-3 h-3" />
@@ -251,7 +251,7 @@ const Experience = () => {
                           {exp.date.includes("Present") && (
                             <Badge
                               variant="secondary"
-                              className="ml-2 bg-green-100 text-green-800"
+                              className="ml-2 transition-colors duration-300"
                             >
                               Current
                             </Badge>
@@ -263,7 +263,7 @@ const Experience = () => {
                               key={descIndex}
                               className="flex items-start gap-2"
                             >
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
                               <p className="text-sm text-muted-foreground leading-relaxed">
                                 {desc}
                               </p>

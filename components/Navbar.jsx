@@ -4,13 +4,7 @@ import Image from "next/image";
 import MobileToggle from "./MobileToggle";
 import { ModeToggle } from "./ModeToggle";
 import { Button } from "./ui/button";
-import {
-  FileDown,
-  Maximize2,
-  Minimize2,
-  ArrowUp,
-  ArrowDown,
-} from "lucide-react";
+import { FileDown, Maximize2, Minimize2 } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
@@ -91,52 +85,77 @@ const Navbar = () => {
   const navbarRef = useRef(null);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
   const shortcutTabRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const scrollTopBtnRef = useRef(null);
   const [showShortcuts, setShowShortcuts] = useState(false);
 
-  const sectionIds = [
-    "hero",
-    "about",
-    // "github", // Uncomment if you have this section
-    "experience",
-    "projects",
-    "skills",
-    "contact",
-  ];
-  const [currentSection, setCurrentSection] = useState(0);
-
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Prevent hydration mismatch by not rendering client-only content until mounted
+  const isClient = mounted;
+
   useGSAP(() => {
-    if (mounted && shortcutTabRef.current) {
+    if (isClient && shortcutTabRef.current) {
       gsap.fromTo(
         shortcutTabRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.3, ease: "power2.out" }
       );
     }
-  }, [mounted]);
+  }, [isClient]);
 
   useGSAP(() => {
+    if (!isClient || !navbarRef.current) return;
+
     const tl = gsap.timeline();
 
-    tl.from(".logo_container", { x: -100, opacity: 0, duration: 0.5 })
-      .from(".nav_links a", {
-        y: -100,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.5,
-      })
-      .from(".resume_download", { x: 100, opacity: 0, duration: 0.5 })
-      .from(".theme_button", { x: 100, opacity: 0, duration: 0.5 });
+    tl.from(".logo_container", {
+      x: -50,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.out",
+    })
+      .from(
+        ".nav_links a",
+        {
+          y: -30,
+          opacity: 0,
+          duration: 0.25,
+          stagger: 0.08,
+          ease: "power2.out",
+        },
+        "-=0.1"
+      )
+      .from(
+        ".resume_download",
+        {
+          x: 50,
+          opacity: 0,
+          duration: 0.25,
+          ease: "power2.out",
+        },
+        "-=0.1"
+      )
+      .from(
+        ".theme_button",
+        {
+          x: 50,
+          opacity: 0,
+          duration: 0.25,
+          ease: "power2.out",
+        },
+        "-=0.1"
+      );
   });
 
   useEffect(() => {
+    if (!isClient) return;
+
     function handleKeyDown(e) {
       const isMac = /Mac/i.test(navigator.userAgent);
       const key = e.key.toLowerCase();
@@ -154,12 +173,15 @@ const Navbar = () => {
         (!isMac && e.ctrlKey && e.shiftKey && key === "g");
       if (resumeShortcut) {
         e.preventDefault();
+        // Download (direct)
         const link = document.createElement("a");
-        link.href = "/Shantilal_Frontend_Resume.pdf";
+        link.href = RESUME_DOWNLOAD_LINK;
         link.download = "Shantilal_Frontend_Resume.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        // Open in new tab (view)
+        window.open(RESUME_VIEW_LINK, "_blank");
       } else if (linkedinShortcut) {
         e.preventDefault();
         window.open("https://www.linkedin.com/in/spsanchore13/", "_blank");
@@ -170,26 +192,28 @@ const Navbar = () => {
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!isClient) return;
     let ticking = false;
     function onScroll() {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
+          setIsAtTop(currentScrollY <= 5); // Reduced threshold for more responsive border
+
           if (navbarRef.current) {
             if (currentScrollY > lastScrollY && currentScrollY > 50) {
               gsap.to(navbarRef.current, {
                 y: -100,
-                duration: 0.4,
+                duration: 0.2,
                 ease: "power2.out",
               });
             } else {
               gsap.to(navbarRef.current, {
                 y: 0,
-                duration: 0.4,
+                duration: 0.2,
                 ease: "power2.out",
               });
             }
@@ -203,34 +227,36 @@ const Navbar = () => {
     }
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, [lastScrollY, mounted]);
+  }, [lastScrollY, isClient]);
 
   useGSAP(() => {
     if (showScrollTop && scrollTopBtnRef.current) {
       gsap.to(scrollTopBtnRef.current, {
         y: 0,
         opacity: 1,
-        duration: 0.4,
+        duration: 0.2,
         ease: "power2.out",
       });
     } else if (scrollTopBtnRef.current) {
       gsap.to(scrollTopBtnRef.current, {
-        y: 40,
+        y: 20,
         opacity: 0,
-        duration: 0.4,
+        duration: 0.2,
         ease: "power2.out",
       });
     }
   }, [showScrollTop]);
 
   useEffect(() => {
+    if (!isClient) return;
+
     function handleFullscreenChange() {
       setIsFullscreen(!!document.fullscreenElement);
     }
     document.addEventListener("fullscreenchange", handleFullscreenChange);
     return () =>
       document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  }, []);
+  }, [isClient]);
 
   const handleFullscreen = () => {
     if (!isFullscreen) {
@@ -244,76 +270,30 @@ const Navbar = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const RESUME_VIEW_LINK =
+    "https://drive.google.com/file/d/1HFvo7Od7uR4sdRcczzEsKw-ODhV1jMXl/view?usp=sharing";
+  const RESUME_DOWNLOAD_LINK =
+    "https://drive.google.com/uc?export=download&id=1HFvo7Od7uR4sdRcczzEsKw-ODhV1jMXl";
+
   const handleResumeDownload = () => {
+    // Open in new tab (view)
+    window.open(RESUME_VIEW_LINK, "_blank");
+    // Download (direct)
     const link = document.createElement("a");
-    link.href = "/Shantilal_Frontend_Resume.pdf";
+    link.href = RESUME_DOWNLOAD_LINK;
     link.download = "Shantilal_Frontend_Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    // Also open in new tab
-    window.open("/Shantilal_Frontend_Resume.pdf", "_blank");
-  };
-
-  // Improved: Debounced scroll handler and robust section detection
-  useEffect(() => {
-    let timeoutId = null;
-    function onScroll() {
-      if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        let closestIdx = 0;
-        let minDistance = Infinity;
-        sectionIds.forEach((id, idx) => {
-          const el = document.getElementById(id);
-          if (el) {
-            const rect = el.getBoundingClientRect();
-            // Distance from top of viewport (positive if below, negative if above)
-            const distance = Math.abs(rect.top);
-            // Only consider sections that are at least partially in view
-            if (
-              rect.top <= window.innerHeight * 0.5 &&
-              distance < minDistance
-            ) {
-              minDistance = distance;
-              closestIdx = idx;
-            }
-          }
-        });
-        setCurrentSection(closestIdx);
-      }, 50); // Debounce for performance
-    }
-    window.addEventListener("scroll", onScroll);
-    // Initial check
-    onScroll();
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, []);
-
-  const scrollToSection = (index) => {
-    const el = document.getElementById(sectionIds[index]);
-    const navbar = document.getElementById("main-navbar");
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const navbarHeight = navbar ? navbar.offsetHeight : 0;
-      // Scroll to section top minus navbar height
-      window.scrollTo({
-        top: rect.top + scrollTop - navbarHeight,
-        behavior: "smooth",
-      });
-    }
   };
 
   return (
     <>
-      {/* Fixed Fullscreen Button */}
-      {mounted && (
+      {/* Fixed Fullscreen Button - Only visible on web/desktop */}
+      {isClient && (
         <button
           onClick={handleFullscreen}
-          className="fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          className="hidden lg:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 bg-background/90 border border-border rounded-full shadow-lg p-3 items-center justify-center hover:bg-accent transition-colors duration-300"
           aria-label={isFullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}
           type="button"
         >
@@ -325,23 +305,36 @@ const Navbar = () => {
         </button>
       )}
       {/* Fixed Scroll To Top Button */}
-      {mounted && (
+      {isClient && (
         <button
           ref={scrollTopBtnRef}
           onClick={handleScrollTop}
-          className="fixed left-4 bottom-6 z-50 bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+          className="fixed left-4 bottom-6 z-50 bg-background/90 border border-border rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-accent transition-colors duration-300"
           aria-label="Scroll to top"
           type="button"
           style={{ opacity: 0, transform: "translateY(40px)" }}
         >
-          <ArrowUp className="w-5 h-5" />
+          <svg
+            className="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            />
+          </svg>
         </button>
       )}
-      {/* Fixed Shortcuts Button */}
-      {mounted && (
+      {/* Fixed Shortcuts Button - Only visible on web/desktop */}
+      {isClient && (
         <button
           onClick={() => setShowShortcuts((prev) => !prev)}
-          className="fixed right-6 bottom-6 z-50 text-white rounded-full shadow-lg py-3 px-4 flex items-center justify-center transition-colors"
+          className="hidden lg:flex fixed right-6 bottom-6 z-50 text-primary-foreground rounded-full shadow-lg py-3 px-4 items-center justify-center transition-colors duration-300"
           style={{
             background: "linear-gradient(90deg, #efd5ff 0%, #515ada 100%)",
           }}
@@ -351,60 +344,50 @@ const Navbar = () => {
           /shortcuts
         </button>
       )}
-      {/* Fixed Arrow Up/Down Buttons */}
-      {mounted && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 items-center">
-          <button
-            onClick={() => scrollToSection(Math.max(currentSection - 1, 0))}
-            className="bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors disabled:opacity-50"
-            aria-label="Scroll to previous section"
-            type="button"
-            disabled={currentSection === 0}
-          >
-            <ArrowUp className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() =>
-              scrollToSection(
-                Math.min(currentSection + 1, sectionIds.length - 1)
-              )
-            }
-            className="bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors disabled:opacity-50"
-            aria-label="Scroll to next section"
-            type="button"
-            disabled={currentSection === sectionIds.length - 1}
-          >
-            <ArrowDown className="w-5 h-5" />
-          </button>
-        </div>
-      )}
       <div
         ref={navbarRef}
         id="main-navbar"
-        className="navbar_container w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 px-2 lg:px-10 z-30"
+        className={`navbar_container w-full grid grid-cols-3 bg-background/95 backdrop-blur-sm items-center sticky top-0 py-2 px-2 lg:px-10 z-30 transition-all duration-300 ${
+          !isAtTop ? "border-b" : ""
+        }`}
         style={{ willChange: "transform" }}
       >
-        <MobileToggle />
-        <div className="hidden lg:flex logo_container">
-          <Image src="/logo.png" width={150} height={10} alt="logo" />
+        {/* Left Section - Logo */}
+        <div className="flex justify-start items-center">
+          <MobileToggle />
+          <div className="hidden lg:flex logo_container ml-4">
+            <Image
+              src="/logo.png"
+              width={150}
+              height={10}
+              alt="logo"
+              className="transition-all dark:brightness-0 dark:invert"
+            />
+          </div>
         </div>
-        <div className={`hidden lg:flex gap-5 nav_links`}>
-          {links.map((link, index) => (
-            <a
-              className="font-medium text-green-500 hover:text-green-300  dark:hover:text-zinc-300 text-[18px]"
-              href={link.url}
-              key={link.name + index}
-            >
-              {link.name}
-            </a>
-          ))}
+
+        {/* Center Section - Navigation Links */}
+        <div className="hidden lg:flex justify-center items-center">
+          <nav className="flex gap-x-6 nav_links">
+            {links.map((link, index) => (
+              <a
+                className="font-medium text-primary hover:text-primary/80 transition-colors duration-300 text-[18px] whitespace-nowrap"
+                href={link.url}
+                key={link.name + index}
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
         </div>
-        <div className="flex gap-3">
+
+        {/* Right Section - Buttons */}
+        <div className="flex justify-end gap-3">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
                 <Button
-                  className="resume_download"
+                  className="resume_download transition-colors duration-300"
                   variant="icon"
                   onClick={handleResumeDownload}
                 >
@@ -428,11 +411,11 @@ const Navbar = () => {
           </TooltipProvider>
         </div>
       </div>
-      {/* Shortcut tab */}
-      {mounted && showShortcuts && (
+      {/* Shortcut tab - Only visible on web/desktop */}
+      {isClient && showShortcuts && (
         <div
           ref={shortcutTabRef}
-          className="fixed bottom-6 right-1/2 translate-x-1/2 md:right-6 md:translate-x-0 z-50 bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-lg p-4 max-w-xs md:max-w-2xl text-sm text-zinc-900 dark:text-zinc-100 backdrop-blur-md flex flex-col"
+          className="hidden lg:flex fixed bottom-6 right-6 z-50 bg-background/90 border border-border rounded-lg shadow-lg p-4 max-w-xs md:max-w-2xl text-sm text-foreground backdrop-blur-md flex flex-col transition-colors duration-300"
           style={{ minWidth: "220px" }}
         >
           <div className="flex justify-between items-center mb-2">
@@ -441,7 +424,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={() => setShowShortcuts(false)}
-              className="ml-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="ml-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
               aria-label="Close Shortcuts"
               type="button"
             >

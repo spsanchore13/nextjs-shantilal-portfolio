@@ -6,9 +6,9 @@ const Footer = () => {
 
   return (
     <div className="w-full">
-      <Separator />
+      <Separator className="border-border" />
 
-      <div className="w-full flex justify-center items-center p-2 font-semibold">
+      <div className="w-full flex justify-center items-center p-2 font-semibold text-foreground">
         <p>Made With</p>
         <img
           src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Heart%20Exclamation.png"

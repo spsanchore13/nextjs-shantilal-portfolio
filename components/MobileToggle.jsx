@@ -7,19 +7,19 @@ const MobileToggle = () => {
   const links = [
     {
       name: "Home",
-      url: "#",
+      url: "#hero",
     },
     {
       name: "About",
       url: "#about",
     },
     {
-      name: "Github",
-      url: "#github",
+      name: "Education",
+      url: "#education",
     },
     {
-      name: "Exp.",
-      url: "#github",
+      name: "Experience",
+      url: "#experience",
     },
     {
       name: "Projects",
@@ -29,35 +29,53 @@ const MobileToggle = () => {
       name: "Skills",
       url: "#skills",
     },
-
     {
       name: "Contact",
       url: "#contact",
     },
   ];
+
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="lg:hidden">
+      <SheetTrigger>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="lg:hidden transition-colors duration-300"
+        >
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="bg-white w-1/2">
-        <div>
-          <Image src="/logo.png" width={150} height={10} alt="logo" />
-        </div>
-        <div className={`flex flex-col gap-y-4 my-6`}>
-          {links.map((link, index) => {
-            return (
-              <a
-                className="font-semibold text-teal-500 hover:text-teal-300 text-[18px]"
-                href={link.url}
-                key={index}
-              >
-                {link.name}
-              </a>
-            );
-          })}
+      <SheetContent
+        side="left"
+        className="bg-background border-r border-border w-4/5 sm:w-1/2 transition-colors duration-300"
+      >
+        <div className="flex flex-col h-full">
+          <div className="flex justify-center py-4 border-b border-border">
+            <Image
+              src="/logo.png"
+              width={120}
+              height={8}
+              alt="logo"
+              className="transition-all dark:brightness-0 dark:invert"
+            />
+          </div>
+          <nav className="flex-1 py-6">
+            <div className="flex flex-col gap-4">
+              {links.map((link, index) => (
+                <a
+                  key={index}
+                  className="font-semibold text-primary hover:text-primary/80 transition-colors duration-300 text-lg py-3 px-4 rounded-lg hover:bg-accent"
+                  href={link.url}
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </nav>
+          <div className="py-4 border-t border-border text-center text-sm text-muted-foreground">
+            <p>Portfolio by Shantilal Patliya</p>
+          </div>
         </div>
       </SheetContent>
     </Sheet>
