@@ -18,13 +18,10 @@ import {
   TooltipTrigger,
 } from "./ui/tooltip";
 import { useTheme } from "next-themes";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { useLayoutEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+// Remove gsap, @gsap/react, and ScrollTrigger imports and all related animation logic from this file.
 
 export function useSectionReveal(ref, animation = {}, dependencies = []) {
   useLayoutEffect(() => {
@@ -89,6 +86,7 @@ const Navbar = () => {
   ];
 
   const navbarRef = useRef(null);
+  const [navbarVisible, setNavbarVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [mounted, setMounted] = useState(false);
   const shortcutTabRef = useRef(null);
@@ -112,28 +110,27 @@ const Navbar = () => {
     setMounted(true);
   }, []);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (mounted && shortcutTabRef.current) {
-      gsap.fromTo(
-        shortcutTabRef.current,
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
-      );
+      // gsap.fromTo(
+      //   shortcutTabRef.current,
+      //   { y: 40, opacity: 0 },
+      //   { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" }
+      // );
     }
   }, [mounted]);
 
-  useGSAP(() => {
-    const tl = gsap.timeline();
-
-    tl.from(".logo_container", { x: -100, opacity: 0, duration: 0.5 })
-      .from(".nav_links a", {
-        y: -100,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.5,
-      })
-      .from(".resume_download", { x: 100, opacity: 0, duration: 0.5 })
-      .from(".theme_button", { x: 100, opacity: 0, duration: 0.5 });
+  useEffect(() => {
+    // const tl = gsap.timeline();
+    // tl.from(".logo_container", { x: -100, opacity: 0, duration: 0.5 })
+    //   .from(".nav_links a", {
+    //     y: -100,
+    //     opacity: 0,
+    //     duration: 0.5,
+    //     stagger: 0.5,
+    //   })
+    //   .from(".resume_download", { x: 100, opacity: 0, duration: 0.5 })
+    //   .from(".theme_button", { x: 100, opacity: 0, duration: 0.5 });
   });
 
   useEffect(() => {
@@ -180,18 +177,15 @@ const Navbar = () => {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
           if (navbarRef.current) {
-            if (currentScrollY > lastScrollY && currentScrollY > 50) {
-              gsap.to(navbarRef.current, {
-                y: -100,
-                duration: 0.4,
-                ease: "power2.out",
-              });
-            } else {
-              gsap.to(navbarRef.current, {
-                y: 0,
-                duration: 0.4,
-                ease: "power2.out",
-              });
+            if (currentScrollY <= 0) {
+              setNavbarVisible(true);
+            } else if (currentScrollY > lastScrollY && currentScrollY > 50) {
+              setNavbarVisible(false);
+            } else if (
+              currentScrollY < lastScrollY &&
+              lastScrollY - currentScrollY > 50
+            ) {
+              setNavbarVisible(true);
             }
           }
           setLastScrollY(currentScrollY);
@@ -205,21 +199,21 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [lastScrollY, mounted]);
 
-  useGSAP(() => {
+  useEffect(() => {
     if (showScrollTop && scrollTopBtnRef.current) {
-      gsap.to(scrollTopBtnRef.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.4,
-        ease: "power2.out",
-      });
+      // gsap.to(scrollTopBtnRef.current, {
+      //   y: 0,
+      //   opacity: 1,
+      //   duration: 0.4,
+      //   ease: "power2.out",
+      // });
     } else if (scrollTopBtnRef.current) {
-      gsap.to(scrollTopBtnRef.current, {
-        y: 40,
-        opacity: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      });
+      // gsap.to(scrollTopBtnRef.current, {
+      //   y: 40,
+      //   opacity: 0,
+      //   duration: 0.4,
+      //   ease: "power2.out",
+      // });
     }
   }, [showScrollTop]);
 
@@ -352,53 +346,35 @@ const Navbar = () => {
         </button>
       )}
       {/* Fixed Arrow Up/Down Buttons */}
-      {mounted && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 items-center">
-          <button
-            onClick={() => scrollToSection(Math.max(currentSection - 1, 0))}
-            className="bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors disabled:opacity-50"
-            aria-label="Scroll to previous section"
-            type="button"
-            disabled={currentSection === 0}
-          >
-            <ArrowUp className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() =>
-              scrollToSection(
-                Math.min(currentSection + 1, sectionIds.length - 1)
-              )
-            }
-            className="bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors disabled:opacity-50"
-            aria-label="Scroll to next section"
-            type="button"
-            disabled={currentSection === sectionIds.length - 1}
-          >
-            <ArrowDown className="w-5 h-5" />
-          </button>
-        </div>
-      )}
       <div
         ref={navbarRef}
         id="main-navbar"
-        className="navbar_container w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 px-2 lg:px-10 z-30"
+        className={`navbar_container w-full flex justify-between bg-white dark:bg-[#020817] items-center sticky top-0 py-2 px-2 lg:px-10 z-30 transition-transform duration-300 ${
+          navbarVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
         style={{ willChange: "transform" }}
       >
         <MobileToggle />
         <div className="hidden lg:flex logo_container">
           <Image src="/logo.png" width={150} height={10} alt="logo" />
         </div>
-        <div className={`hidden lg:flex gap-5 nav_links`}>
+        <nav className="hidden lg:flex gap-2 nav_links">
           {links.map((link, index) => (
             <a
-              className="font-medium text-green-500 hover:text-green-300  dark:hover:text-zinc-300 text-[18px]"
+              className={`relative font-semibold text-[18px] px-4 py-2 rounded-full transition-all duration-200
+                ${
+                  currentSection === index
+                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md"
+                    : "text-black dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-blue-600"
+                }
+              `}
               href={link.url}
               key={link.name + index}
             >
               {link.name}
             </a>
           ))}
-        </div>
+        </nav>
         <div className="flex gap-3">
           <TooltipProvider>
             <Tooltip>

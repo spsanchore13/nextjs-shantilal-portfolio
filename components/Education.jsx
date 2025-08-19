@@ -11,9 +11,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 const educationData = [
   {
@@ -30,13 +27,6 @@ const educationData = [
     location: "Kota",
     duration: "July 2015 - July 2019",
   },
-  {
-    type: "education",
-    degree: "12th Science Maths",
-    institution: "Gayatri Vidhya Mandir",
-    location: "Sanchore",
-    duration: "July 2014 - July 2015",
-  },
 ];
 
 const Education = () => {
@@ -44,54 +34,13 @@ const Education = () => {
   const dotRefs = useRef([]);
 
   useEffect(() => {
-    cardRefs.current.forEach((el, i) => {
-      if (el) {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            delay: i * 0.15,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              toggleActions: "play none none none",
-              once: true,
-            },
-          }
-        );
-      }
-    });
-    dotRefs.current.forEach((el, i) => {
-      if (el) {
-        gsap.fromTo(
-          el,
-          { scale: 0, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.5,
-            delay: i * 0.15 + 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none",
-              once: true,
-            },
-          }
-        );
-      }
-    });
+    // Remove gsap and ScrollTrigger imports and all related animation logic from this file.
   }, []);
 
   return (
-    <div className="w-full min-h-screen max-w-5xl mx-auto p-6 flex flex-col items-center justify-center">
+    <div className="w-full min-h-screen max-w-5xl mx-auto px-2 lg:px-10 flex flex-col items-center justify-center">
       {/* Education Section */}
-      <section className="w-full">
+      <section className="w-full mb-[150px]">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             Education

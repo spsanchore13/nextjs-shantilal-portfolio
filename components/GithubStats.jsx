@@ -25,7 +25,7 @@ const GithubStats = () => {
 
   return (
     <>
-      <section id="github" className="w-full h-screen">
+      <section id="github" className="w-full h-screen mb-[150px]">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}

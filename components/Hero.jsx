@@ -49,20 +49,20 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="md:h-screen flex flex-col xl:flex-row justify-evenly items-center"
+      className="mb-[150px] md:h-screen flex flex-col xl:flex-row justify-evenly items-center"
     >
-      <div className="flex flex-col justify-center gap-3 align-middle text-center">
+      <div className="flex flex-col justify-center gap-3 align-middle">
         <p className="p-2 text-3xl">Hi 👋, I'm</p>
 
         <h1 className="text-6xl md:text-7xl font-extrabold relative text-transparent bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90% bg-clip-text">
           Shantilal Patliya
         </h1>
-        <p className="p-2 text-2xl md:text-3xl max-w-3xl">
+        <p className="py-2 text-2xl md:text-3xl max-w-3xl">
           Frontend Developer building accessible, performant, and scalable
           interfaces.
         </p>
 
-        <div className="flex flex-row gap-5 p-2 justify-center">
+        <div className="flex flex-row gap-5 py-2">
           {iconMap.map((icon, i) => (
             <TooltipProvider key={i}>
               <Tooltip>

@@ -19,8 +19,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import gsap from "gsap";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import { BentoGrid, BentoCard } from "@/components/magicui/bento-grid";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { Button } from "./ui/button";
 
 const projects = [
   {
@@ -30,7 +39,9 @@ const projects = [
     technologies:
       "JavaScript, React, Recoil, AWS, Tailwind, shadcn/ui, Material-UI",
     link: "https://mywealth.fabits.com/",
-    logo: "https://d3lgi69rk7563.cloudfront.net/svgs/logo.svg",
+    logo: "/fabits.png",
+    images: ["/fabits.png"],
+    backgroundImage: "/fabits.png",
     github: "",
   },
   {
@@ -39,7 +50,9 @@ const projects = [
       "Developed a fully functional restaurant website with a modern UI, leveraging Next.js for server-side rendering and performance optimization.",
     technologies: "JavaScript, React, Next.js, Tailwind CSS",
     link: "https://namastenola439.com/",
-    logo: "https://cdn.masaischool.com/masai-website/Masai_Logo_dark_web_b21aab8c62.webp",
+    logo: "/namaste-nola.png",
+    images: ["/namaste-nola.png"],
+    backgroundImage: "/namaste-nola.png",
     github: "",
   },
   {
@@ -49,7 +62,9 @@ const projects = [
     technologies:
       "HTML, CSS, Tailwind CSS, TypeScript, React.js, Next.js, Node.js, Clerk Auth, Crisp Chat, OpenAI, DALL.E, Replicate AI",
     link: "https://next-js-ai-saas.vercel.app/",
-    logo: "https://cdn.masaischool.com/masai-website/Masai_Logo_dark_web_b21aab8c62.webp",
+    logo: "/genius-ai.png",
+    images: ["/genius-ai.png"],
+    backgroundImage: "/genius-ai.png",
     github: "https://mywealth.fabits.com/",
   },
   {
@@ -59,7 +74,9 @@ const projects = [
     technologies:
       "HTML, CSS, Tailwind CSS, TypeScript, React.js, Next.js, Node.js, Clerk Auth, Socket.IO, shadecn/ui",
     link: "https://next-js-discord-clone.vercel.app/",
-    logo: "https://cdn.masaischool.com/masai-website/Masai_Logo_dark_web_b21aab8c62.webp",
+    logo: "/shanti1.png",
+    images: ["/shanti1.png"],
+    backgroundImage: "/shanti1.png",
     github: "https://github.com/spsanchore13/next.js-discord-clone",
   },
   {
@@ -69,17 +86,10 @@ const projects = [
     technologies:
       "HTML, CSS, Tailwind CSS, TypeScript, React.js, Next.js, Headless UI, Rapid Car API",
     link: "https://next-js-cars-showcase.vercel.app/",
-    logo: "https://cdn.masaischool.com/masai-website/Masai_Logo_dark_web_b21aab8c62.webp",
+    logo: "/car-hub.png",
+    images: ["/car-hub.png"],
+    backgroundImage: "/car-hub.png",
     github: "https://github.com/spsanchore13/next-js-cars-showcase",
-  },
-  {
-    title: "Balaji Metal India (Freelance)",
-    description:
-      "Established in 2009, Balaji Metal India is an ISO 9001:2008 certified manufacturer and supplier of SS Railings, Stainless Steel Hand Rail, and Stainless Steel Railings. We also provide Stainless Steel Fabrication Service",
-    technologies: "JavaScript, React, Next.js, Tailwind CSS",
-    link: "http://balajimetalindia.in/",
-    logo: "https://cdn.masaischool.com/masai-website/Masai_Logo_dark_web_b21aab8c62.webp",
-    github: "",
   },
 ];
 
@@ -87,28 +97,15 @@ const dummyImages = ["/nextjs.png", "/react.png", "/vercel.svg"];
 
 const Projects = () => {
   const cardRefs = useRef([]);
-
-  useEffect(() => {
-    gsap.fromTo(
-      cardRefs.current,
-      { y: 60, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.7,
-        stagger: 0.15,
-        ease: "power3.out",
-      }
-    );
-  }, []);
+  const [expanded, setExpanded] = useState(null);
 
   return (
     <div
-      className="w-full min-h-screen max-w-7xl mx-auto p-6 space-y-16"
+      className="w-full min-h-screen max-w-7xl mx-auto px-2 lg:px-10 space-y-16"
       id="projects"
     >
       {/* Projects Section */}
-      <section>
+      <section className="mb-[150px]">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-foreground mb-2">
             Project Portfolio
@@ -118,85 +115,128 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project, index) => (
-            <div
-              key={project.title + index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className="group bg-white/60 dark:bg-zinc-900/60 backdrop-blur-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-zinc-200 dark:border-zinc-700 flex flex-col overflow-hidden"
-              style={{ minHeight: 420 }}
-            >
-              {/* Carousel */}
-              <Carousel className="w-full">
-                <CarouselContent>
-                  {[project.logo, ...dummyImages].map((img, imgIdx) => (
-                    <CarouselItem
-                      key={imgIdx}
-                      className="flex items-center justify-center h-56 bg-gradient-to-br from-purple-100/40 to-purple-200/10 dark:from-zinc-800 dark:to-zinc-900"
-                    >
-                      <Image
-                        src={img}
-                        alt={project.title + " image " + imgIdx}
-                        width={180}
-                        height={180}
-                        className="object-contain rounded-xl transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
-              </Carousel>
+        {/* Modern Bento Grid Layout */}
+        <BentoGrid className="lg:grid-rows-3">
+          {projects.map((project, index) => {
+            // Custom grid class for bento effect
+            let className = "";
+            if (index === 0)
+              className =
+                "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-3";
+            else if (index === 1)
+              className =
+                "lg:row-start-1 lg:row-end-2 lg:col-start-3 lg:col-end-4";
+            else if (index === 2)
+              className =
+                "lg:row-start-2 lg:row-end-4 lg:col-start-3 lg:col-end-4";
+            else if (index === 3)
+              className =
+                "lg:row-start-3 lg:row-end-4 lg:col-start-1 lg:col-end-2";
+            else if (index === 4)
+              className =
+                "lg:row-start-3 lg:row-end-4 lg:col-start-2 lg:col-end-3";
+            else className = "";
 
-              <CardContent className="p-6 h-full flex flex-col">
-                <h3 className="text-lg md:text-xl font-bold text-foreground mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground mb-4 text-sm md:text-base leading-relaxed flex-1">
-                  {project.description}
-                </p>
-                <div className="mb-4">
-                  <p className="text-xs text-muted-foreground mb-2">
-                    <span className="font-semibold text-foreground">
-                      Technologies:
-                    </span>
-                  </p>
-                  <div className="flex flex-wrap gap-1">
-                    {project.technologies.split(", ").map((tech, techIndex) => (
-                      <Badge
-                        key={tech + techIndex}
-                        variant="secondary"
-                        className="text-xs bg-purple-100 text-purple-800 hover:bg-purple-200"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex gap-4 mt-auto">
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-purple-600 hover:text-purple-400 transition-colors font-medium text-sm"
-                  >
-                    Live Demo <ExternalLink className="h-4 w-4" />
-                  </a>
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
-                    >
-                      GitHub <FaGithub className="h-4 w-4" />
-                    </a>
-                  )}
-                </div>
-              </CardContent>
-            </div>
-          ))}
-        </div>
+            // Custom background (optional, can be improved)
+            const background = (
+              <>
+                <Image
+                  src={project.backgroundImage}
+                  alt={project.title + " background"}
+                  fill
+                  className="object-cover opacity-30 blur-xs rounded-xl z-0"
+                  style={{ pointerEvents: "none" }}
+                />
+              </>
+            );
+
+            return (
+              <BentoCard
+                key={project.title + index}
+                name={project.title}
+                description={project.description.split(".")[0]}
+                className={
+                  className + " relative flex flex-col justify-between group"
+                }
+                background={background}
+                // href and cta removed, only expand button remains
+              >
+                {/* Expand button only on hover */}
+                <Button
+                  className="absolute top-4 right-4 z-20 px-3 py-1 rounded bg-purple-100 text-purple-800 hover:bg-purple-200 text-xs font-semibold opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity"
+                  onClick={() => setExpanded(index)}
+                  tabIndex={0}
+                >
+                  Expand
+                </Button>
+                {/* Modal for expanded project details */}
+                {expanded === index && (
+                  <Dialog open={true} onOpenChange={() => setExpanded(null)}>
+                    <DialogContent className="max-w-lg w-full">
+                      <DialogHeader>
+                        <DialogTitle>{project.title}</DialogTitle>
+                        <DialogDescription>
+                          {project.description}
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex flex-wrap gap-1 mb-4 mt-4">
+                        {project.technologies
+                          .split(", ")
+                          .map((tech, techIndex) => (
+                            <Badge
+                              key={tech + techIndex}
+                              variant="secondary"
+                              className="text-xs bg-purple-100 text-purple-800 hover:bg-purple-200"
+                            >
+                              {tech}
+                            </Badge>
+                          ))}
+                      </div>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.images &&
+                          project.images.map((img, imgIdx) => (
+                            <Image
+                              key={imgIdx}
+                              src={img}
+                              alt={project.title + " image " + imgIdx}
+                              width={180}
+                              height={120}
+                              className="rounded-lg object-cover border"
+                            />
+                          ))}
+                      </div>
+                      <div className="flex gap-4 mb-4">
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-purple-600 hover:text-purple-400 transition-colors font-medium text-sm"
+                        >
+                          Live Demo <ExternalLink className="h-4 w-4" />
+                        </a>
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium text-sm"
+                          >
+                            GitHub <FaGithub className="h-4 w-4" />
+                          </a>
+                        )}
+                      </div>
+                      <DialogClose asChild>
+                        <button className="absolute top-2 right-2 text-lg font-bold text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
+                          ×
+                        </button>
+                      </DialogClose>
+                    </DialogContent>
+                  </Dialog>
+                )}
+              </BentoCard>
+            );
+          })}
+        </BentoGrid>
       </section>
     </div>
   );

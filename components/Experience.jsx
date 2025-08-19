@@ -11,9 +11,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
@@ -46,60 +43,18 @@ const experiences = [
 ];
 
 const Experience = () => {
+  // Remove gsap and ScrollTrigger logic
   const cardRefs = useRef([]);
   const dotRefs = useRef([]);
 
-  useEffect(() => {
-    cardRefs.current.forEach((el, i) => {
-      if (el) {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 60 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.7,
-            delay: i * 0.15,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 80%",
-              toggleActions: "play none none none",
-              once: true,
-            },
-          }
-        );
-      }
-    });
-    dotRefs.current.forEach((el, i) => {
-      if (el) {
-        gsap.fromTo(
-          el,
-          { scale: 0, opacity: 0 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.5,
-            delay: i * 0.15 + 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "top 85%",
-              toggleActions: "play none none none",
-              once: true,
-            },
-          }
-        );
-      }
-    });
-  }, []);
+  // No useEffect for animations
 
   return (
     <div
-      className="w-full min-h-screen max-w-5xl mx-auto p-6 flex flex-col items-center justify-center"
+      className="w-full min-h-screen max-w-5xl mx-auto px-2 lg:px-10 flex flex-col items-center justify-center"
       id="experience"
     >
-      <section className="w-full">
+      <section className="w-full mb-[150px]">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
             Professional Experience
@@ -121,7 +76,7 @@ const Experience = () => {
                 key={index}
                 className={`relative w-full flex md:grid md:grid-cols-3 md:items-center ${
                   index !== 0 ? "md:-mt-[18%]" : ""
-                }`}
+                } ${index === 1 ? "md:mt-[-20rem]" : ""}`}
               >
                 {/* Left Card (odd index) */}
                 {index % 2 === 0 ? (

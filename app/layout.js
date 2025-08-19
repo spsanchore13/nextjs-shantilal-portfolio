@@ -3,7 +3,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const font = DM_Sans({
+const font = Ubuntu({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
 });
